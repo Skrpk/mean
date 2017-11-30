@@ -7,7 +7,6 @@ import {
   ViewEncapsulation
 } from '@angular/core';
 import { AppState } from './app.service';
-import { PostsService } from './posts/posts.service';
 /**
  * App Component
  * Top Level Component
@@ -19,19 +18,9 @@ import { PostsService } from './posts/posts.service';
     './app.component.scss'
   ],
   template: `
-    <header>
-      <mat-toolbar color="primary">
-        <a [routerLink]="['/']" class="logotTxt">MEAN</a>
-        <a class="links" [routerLink]="['/posts']">Posts</a>
-        <a class="links" [routerLink]="['/react']">React</a>
-        <a class="links" href="/api/graphql">GraphQL browser</a>        
-      </mat-toolbar>
-    </header>
-    <router-outlet></router-outlet>
-    <footer>
-    </footer>
+    <home></home>
   `,
-  providers: [PostsService]
+  providers: []
 })
 export class AppComponent implements OnInit {
   public angularclassLogo = 'assets/img/angularclass-avatar.png';

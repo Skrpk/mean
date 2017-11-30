@@ -15,8 +15,7 @@ import config from './config';
 import APIError from '../helpers/APIError';
 import path from 'path';
 import appRoot from 'app-root-path';
-import innograph from 'innograph'
-import postCtrl from '../controllers/post.controller';
+import innograph from 'innograph';
 
 
 const app = express();
@@ -53,8 +52,6 @@ if (config.env === 'development') {
 app.use(express.static(path.join(appRoot.path, 'dist')));
 
 app.use('/api', routes);
-
-innograph.init('/api/graphql', app, {post: postCtrl});
 
 app.get('*', (req, res) => {
   res.sendFile(path.join(appRoot.path, 'dist/index.html'));
