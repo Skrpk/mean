@@ -56,7 +56,7 @@ const signUp = async (req, res, next) => {
   }
 };
 
-const confirmEmail = (req, res) => {
+const confirmEmail = async (req, res) => {
   try {
      const { user: { email } } = jwt.verify(req.params.token, config.EMAIL_SECRET);
      await User.findOneAndUpdate({ email }, { configrmed: true });

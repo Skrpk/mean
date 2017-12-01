@@ -40,6 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import '../styles/styles.scss';
 import '../styles/headings.css';
+import { SigninComponent } from './signin/signin.component';
+import { SignupComponent } from './signup/signup.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -62,6 +64,8 @@ type StoreType = {
     AppComponent,
     HomeComponent,
     NoContentComponent,
+    SigninComponent,
+    SignupComponent,
   ],
   /**
    * Import Angular's modules.

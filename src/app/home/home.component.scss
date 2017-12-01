@@ -4,6 +4,13 @@ body {
   font-family: Roboto, sans-serif;
 }
 
+.header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  background-color: rgba(174, 235, 241, 0.6);
+}
+
 mat-card {
   max-width: 80%;
   margin: 2em auto;
