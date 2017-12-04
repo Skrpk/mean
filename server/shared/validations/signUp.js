@@ -4,11 +4,11 @@ import isEmpty from 'lodash/isEmpty';
 const ValidateSignUpInput = (data) => {
   const errors = {};
 
-  if (Validator.isNull(data.username)) {
+  if (Validator.isEmpty(data.name)) {
     errors.username = 'This field is required';
   }
 
-  if (Validator.isNull(data.email)) {
+  if (Validator.isEmpty(data.email)) {
     errors.email = 'This field is required';
   }
 
@@ -16,11 +16,11 @@ const ValidateSignUpInput = (data) => {
     errors.email = 'This email is invalid';
   }
 
-  if (Validator.isNull(data.password)) {
+  if (Validator.isEmpty(data.password)) {
     errors.password = 'This field is required';
   }
 
-  if (Validator.isNull(data.passwordConfirmation)) {
+  if (Validator.isEmpty(data.passwordConfirmation)) {
     errors.passwordConfirmation = 'This field is required';
   }
 
@@ -30,7 +30,7 @@ const ValidateSignUpInput = (data) => {
 
   return {
     errors,
-    isValid: !isEmpty(errors),
+    isValid: isEmpty(errors),
   };
 };
 

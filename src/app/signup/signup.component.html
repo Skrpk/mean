@@ -1,9 +1,9 @@
 <div>
-  <form [formGroup]="rForm" (ngSubmit)="signup()">
+  <form [formGroup]="rForm" (ngSubmit)="signup(rForm.value)">
     <div class="form-container">
       <div class="row column">
 
-        <h1>Sign In!</h1>
+        <h1>Sign Up!</h1>
 
         <div class="inputs">
           <label for="name">Name</label>
@@ -16,6 +16,9 @@
           
           <label for="password">Password</label>
           <input  class="form-control" type="password" formControlName="password" id="password">
+
+          <label for="password-confirmation">Password</label>
+          <input  class="form-control" type="password" formControlName="passwordConfirmation" id="password-confirmation">
         </div>
         
         <input type="submit" class="btn btn-success" value="Submit" [disabled]="!rForm.valid">
