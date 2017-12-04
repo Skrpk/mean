@@ -72,6 +72,8 @@ type StoreType = {
    */
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatCardModule,
     MatListModule,
