@@ -34,7 +34,7 @@ const signUp = async (req, res, next) => {
             throw err;
           }
 
-          const url = `http://localhost:${config.port}/api/auth/confirmation/${emailToken}`;
+          const url = `http://localhost:${config.port}/confirmation/${emailToken}`;
 
           transporter.sendMail({
             to: user.email,
@@ -46,7 +46,6 @@ const signUp = async (req, res, next) => {
 
       res.json({ success: true });
     } catch ({ message }) {
-      console.log(message);
       return next({
         status: 400,
         message,

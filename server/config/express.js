@@ -1,6 +1,7 @@
 import express from 'express';
 import logger from 'morgan';
 import bodyParser from 'body-parser';
+import jwt from 'jsonwebtoken';
 import cookieParser from 'cookie-parser';
 import compress from 'compression';
 import methodOverride from 'method-override';
@@ -11,6 +12,7 @@ import expressValidation from 'express-validation';
 import helmet from 'helmet';
 import winstonInstance from './winston';
 import routes from '../routes/index.route';
+import User from '../models/User';
 import config from './config';
 import APIError from '../helpers/APIError';
 import path from 'path';
@@ -53,9 +55,16 @@ app.use(express.static(path.join(appRoot.path, 'dist')));
 
 app.use('/api', routes);
 
-app.get('*', (req, res) => {
-  res.sendFile(path.join(appRoot.path, 'dist/index.html'));
+app.get('/confirmation/:token', async (req, res) => {
+  try {
+    const { user: { email } } = jwt.verify(req.params.token, config.emainSecret);
+    await User.findOneAndUpdate({ email }, { confirmed: true });
+    res.send('Confirmed!');
+  } catch (e) {
+    res.send('ERROR');
+  }
 });
+
 
 // if error is not an instanceOf APIError, convert it.
 app.use((err, req, res, next) => {
