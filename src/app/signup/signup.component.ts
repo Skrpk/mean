@@ -10,7 +10,7 @@ import { HttpClient } from '@angular/common/http';
 export class SignupComponent implements OnInit {
   
   rForm: FormGroup;
-  name: string = '';
+  login: string = '';
   email: string = '';
   password: string = '';
   passwordConfirmation: string = '';
@@ -20,7 +20,7 @@ export class SignupComponent implements OnInit {
     private http: HttpClient,
   ) {
     this.rForm = fb.group({
-      'name': [null, Validators.required],
+      'login': [null, Validators.required],
       'email': [null, Validators.compose([Validators.required, Validators.email])],
       'password': [null, Validators.compose([Validators.required, Validators.minLength(8)])],
       'passwordConfirmation': [null, Validators.required],

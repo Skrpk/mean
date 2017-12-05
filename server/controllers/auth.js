@@ -12,7 +12,6 @@ const signUp = async (req, res, next) => {
   const credentials = req.body;
   let user;
 
-  
   const { errors, isValid } = ValidateSignUpInput(credentials);
 
   if (!isValid) {
@@ -22,12 +21,11 @@ const signUp = async (req, res, next) => {
       const passwordDigest = bcrypt.hashSync(credentials.password, 10);
       credentials.password = passwordDigest;
       user = await User.create(credentials);
-
       jwt.sign(
         {
           user: pick(user, 'email'),
         },
-        config.EMAIL_SECRET,
+        config.emainSecret,
         {
           expiresIn: '1d',
         },
@@ -36,7 +34,7 @@ const signUp = async (req, res, next) => {
             throw err;
           }
 
-          const url = `http://localhost:${config.port}/auth/confirmation/${emailToken}`;
+          const url = `http://localhost:${config.port}/api/auth/confirmation/${emailToken}`;
 
           transporter.sendMail({
             to: user.email,
@@ -59,10 +57,11 @@ const signUp = async (req, res, next) => {
 
 const confirmEmail = async (req, res) => {
   try {
-     const { user: { email } } = jwt.verify(req.params.token, config.EMAIL_SECRET);
+     const { user: { email } } = jwt.verify(req.params.token, config.emainSecret);
      await User.findOneAndUpdate({ email }, { configrmed: true });
+     return res.redirect('/signin');
   } catch (e) {
-    return res.send('ERROR');
+    return res.send(e);
   }
 };
 
