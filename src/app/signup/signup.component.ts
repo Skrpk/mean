@@ -102,6 +102,17 @@ export class SignupComponent implements OnInit {
     });
   }
   }
+  
+  checkUserExists(e) {
+    const field = e.target.id;
+    const val = e.target.value;
+
+    this.http
+    .post('api/user/check-user-exists', { field, val })
+    .subscribe(data => {
+      debugger
+    });
+  }
 
   private checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {
     return (group: FormGroup) => {

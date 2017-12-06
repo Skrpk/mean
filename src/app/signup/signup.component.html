@@ -7,7 +7,7 @@
 
         <div class="inputs">
           <label for="login">Login</label>
-          <input  class="form-control" type="text" formControlName="login" id="login">
+          <input  class="form-control" type="text" formControlName="login" id="login" (blur)="checkUserExists($event)">
           <app-error-message
             [messages]="errorList.login"
             [closeHandler]="clearErrorMessagesList"
@@ -15,7 +15,7 @@
           ></app-error-message>
           
           <label for="email">Email</label>
-          <input  class="form-control" type="text" formControlName="email" id="email">
+          <input  class="form-control" type="text" formControlName="email" id="email" (blur)="checkUserExists($event)">
           <app-error-message
             [messages]="errorList.email"
             [closeHandler]="clearErrorMessagesList"

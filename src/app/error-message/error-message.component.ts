@@ -13,7 +13,6 @@ export class ErrorMessageComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log(this.messages);
   }
 
 }
