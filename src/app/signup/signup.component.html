@@ -8,20 +8,38 @@
         <div class="inputs">
           <label for="login">Login</label>
           <input  class="form-control" type="text" formControlName="login" id="login">
-          
+          <app-error-message
+            [messages]="errorList.login"
+            [closeHandler]="clearErrorMessagesList"
+            [name]="'login'"
+          ></app-error-message>
           
           <label for="email">Email</label>
           <input  class="form-control" type="text" formControlName="email" id="email">
-          
+          <app-error-message
+            [messages]="errorList.email"
+            [closeHandler]="clearErrorMessagesList"
+            [name]="'email'"
+          ></app-error-message>
           
           <label for="password">Password</label>
           <input  class="form-control" type="password" formControlName="password" id="password">
+          <app-error-message
+            [messages]="errorList.password"
+            [closeHandler]="clearErrorMessagesList"
+            [name]="'password'"
+          ></app-error-message>
 
           <label for="password-confirmation">Password</label>
           <input  class="form-control" type="password" formControlName="passwordConfirmation" id="password-confirmation">
+          <app-error-message
+            [messages]="errorList.passwordConfirmation"
+            [closeHandler]="clearErrorMessagesList"
+            [name]="'passwordConfirmation'"
+          ></app-error-message>
         </div>
         
-        <input type="submit" class="btn btn-success" value="Submit" [disabled]="!rForm.valid">
+        <input type="submit" class="btn btn-success" value="Submit">
       </div>
     </div>
   </form>

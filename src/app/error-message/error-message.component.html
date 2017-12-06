@@ -1,0 +1,10 @@
+<div *ngIf="messages[0]">
+  <div class="message">
+    <a class="close" data-dismiss="alert" aria-label="close" title="close" (click)="closeHandler(name)">×</a>
+    <ul>
+      <li *ngFor="let error of messages">
+        {{ error }}
+      </li>
+    </ul>
+  </div>
+</div>

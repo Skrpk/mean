@@ -42,6 +42,7 @@ import '../styles/styles.scss';
 import '../styles/headings.css';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -66,6 +67,7 @@ type StoreType = {
     NoContentComponent,
     SigninComponent,
     SignupComponent,
+    ErrorMessageComponent,
   ],
   /**
    * Import Angular's modules.

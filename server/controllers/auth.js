@@ -54,17 +54,44 @@ const signUp = async (req, res, next) => {
   }
 };
 
-const confirmEmail = async (req, res) => {
+async function signIn(req, res, next) {
+  const { identifier, password } = req.body;
+  let user;
+
   try {
-     const { user: { email } } = jwt.verify(req.params.token, config.emainSecret);
-     await User.findOneAndUpdate({ email }, { configrmed: true });
-     return res.redirect('/signin');
-  } catch (e) {
-    return res.send(e);
+    user = await User.findOne({
+      $or: [
+        { login: identifier },
+        { email: identifier },
+      ],
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Server error' });
   }
-};
+
+  if (user) {
+    if (!user.confirmed) {
+      return res.status(404).json({ signin: 'Please confirm your email to login' });
+    }
+    try {
+      const result = await user.comparePasswords(password);
+      const token = jwt.sign({
+        id: user._id,
+        login: user.login,
+        email: user.email,
+      }, config.secret);
+
+      res.json({ token });
+      next();
+    } catch (e) {
+      res.status(404).json({ signin: 'Invalid credentials' });
+    }
+  } else {
+    res.status(404).json({ signin: 'Invalid credentials' });
+  }
+}
 
 export default {
   signUp,
-  confirmEmail,
+  signIn,
 }

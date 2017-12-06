@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-signin',
@@ -14,7 +15,8 @@ export class SigninComponent implements OnInit {
   password: string = '';
 
   constructor(
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private http: HttpClient
   ) {
     this.rForm = fb.group({
       'name': [null, Validators.required],
@@ -25,8 +27,10 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
   }
 
-  login() {
-    console.log('AAAAA');
+  login(userData) {
+    this.http
+    .post('/api/auth/signin', userData)
+    .subscribe(data => console.log(data));
   }
 
 }
