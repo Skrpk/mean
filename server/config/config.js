@@ -44,7 +44,7 @@ const config = {
     port: envVars.MONGO_PORT
   },
   emailService: envVars.MAIL_SERVICE,
-  emainSecret: envVars.MAIL_SECRET,
+  emailSecret: envVars.MAIL_SECRET,
 };
 
 export default config;

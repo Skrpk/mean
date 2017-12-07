@@ -43,6 +43,8 @@ import '../styles/headings.css';
 import { SigninComponent } from './signin/signin.component';
 import { SignupComponent } from './signup/signup.component';
 import { ErrorMessageComponent } from './error-message/error-message.component';
+import { MainPageComponent } from './main-page/main-page.component';
+import { GlobalStateService } from './global-state.service';
 
 // Application wide providers
 const APP_PROVIDERS = [
@@ -68,6 +70,7 @@ type StoreType = {
     SigninComponent,
     SignupComponent,
     ErrorMessageComponent,
+    MainPageComponent,
   ],
   /**
    * Import Angular's modules.
@@ -89,7 +92,8 @@ type StoreType = {
    */
   providers: [
     ENV_PROVIDERS,
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    GlobalStateService
   ]
 })
 export class AppModule {

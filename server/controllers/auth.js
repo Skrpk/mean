@@ -25,7 +25,7 @@ const signUp = async (req, res, next) => {
         {
           user: pick(user, 'email'),
         },
-        config.emainSecret,
+        config.emailSecret,
         {
           expiresIn: '1d',
         },
@@ -55,20 +55,20 @@ const signUp = async (req, res, next) => {
 };
 
 async function signIn(req, res, next) {
-  const { identifier, password } = req.body;
+  const { login, password } = req.body;
   let user;
 
   try {
     user = await User.findOne({
       $or: [
-        { login: identifier },
-        { email: identifier },
+        { login: login },
+        { email: login },
       ],
     });
   } catch (error) {
     res.status(500).json({ error: 'Server error' });
   }
-
+  
   if (user) {
     if (!user.confirmed) {
       return res.status(404).json({ signin: 'Please confirm your email to login' });
@@ -79,10 +79,9 @@ async function signIn(req, res, next) {
         id: user._id,
         login: user.login,
         email: user.email,
-      }, config.secret);
+      }, config.emailSecret);
 
       res.json({ token });
-      next();
     } catch (e) {
       res.status(404).json({ signin: 'Invalid credentials' });
     }

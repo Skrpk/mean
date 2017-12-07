@@ -117,6 +117,7 @@
     "innograph": "git://github.com/linnovate/innograph.git#devel",
     "joi": "^10.5.2",
     "jsonwebtoken": "^8.1.0",
+    "jwt-decode": "^2.2.0",
     "lodash": "^4.17.4",
     "material": "^0.1.1",
     "method-override": "^2.3.9",

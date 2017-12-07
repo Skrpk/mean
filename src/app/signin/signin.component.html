@@ -6,14 +6,24 @@
         <h1>Sign In!</h1>
 
         <div class="inputs">
-          <label for="name">Name of email</label>
-          <input  class="form-control" type="text" formControlName="name" id="name">
-          
+          <label for="login">Name or email</label>
+          <input  class="form-control" type="text" formControlName="login" id="login">
+          <app-error-message
+            [message]="errorList.login"
+            [closeHandler]="clearErrorMessagesList"
+            [name]="'login'"
+        ></app-error-message>
+
           <label for="password">Password</label>
           <input  class="form-control" type="password" formControlName="password" id="password">
+          <app-error-message
+            [message]="errorList.password"
+            [closeHandler]="clearErrorMessagesList"
+            [name]="'password'"
+        ></app-error-message>
         </div>
         
-        <input type="submit" class="btn btn-success" value="Submit" [disabled]="!rForm.valid">
+        <input type="submit" class="btn btn-success" value="Submit">
       </div>
     </div>
   </form>

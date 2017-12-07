@@ -57,7 +57,7 @@ app.use('/api', routes);
 
 app.get('/confirmation/:token', async (req, res) => {
   try {
-    const { user: { email } } = jwt.verify(req.params.token, config.emainSecret);
+    const { user: { email } } = jwt.verify(req.params.token, config.emailSecret);
     await User.findOneAndUpdate({ email }, { confirmed: true });
     res.send('Confirmed!');
   } catch (e) {
