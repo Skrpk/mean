@@ -22,15 +22,15 @@ export class SignupComponent implements OnInit {
   password: string = '';
   passwordConfirmation: string = '';
   errorList: {
-    login: string[],
-    email: string[],
-    password: string[],
-    passwordConfirmation: string[],
+    login: string,
+    email: string,
+    password: string,
+    passwordConfirmation: string,
   } = {
-    login: [],
-    email: [],
-    password: [],
-    passwordConfirmation: [],
+    login: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
   };
 
   constructor(
@@ -58,31 +58,31 @@ export class SignupComponent implements OnInit {
 
     if (loginErrors) {
       if (loginErrors.required) {
-        errorList.login.push(FIELD_IS_REQUIRED);
+        errorList.login = FIELD_IS_REQUIRED;
       }
       if (loginErrors.minlength) {
-        errorList.login.push(TOO_SHORT);
+        errorList.login = TOO_SHORT;
       }
     }
 
     if (emailErrors) {
       if (emailErrors.email) {
-        errorList.email.push(EMAIL_IS_INVALID);
+        errorList.email = EMAIL_IS_INVALID;
       }
     }
 
     if (passwordErrors) {
       if (passwordErrors.required) {
-        errorList.password.push(FIELD_IS_REQUIRED);
+        errorList.password = FIELD_IS_REQUIRED;
       }
       if (passwordErrors.minlength) {
-        errorList.password.push(TOO_SHORT);
+        errorList.password = TOO_SHORT;
       }
     }
 
     if (passwordConfirmationErrors) {
       if (passwordConfirmationErrors.notEquivalent) {
-        errorList.passwordConfirmation.push(PASSWORD_DO_NOT_MATCH);
+        errorList.passwordConfirmation = PASSWORD_DO_NOT_MATCH;
       }
     }
   }
@@ -92,7 +92,7 @@ export class SignupComponent implements OnInit {
   }
 
   signup(userData) {
-  if (!this.rForm.valid) {
+  if (!this.rForm.valid || this.errorList.email[0] || this.errorList.login[0]) {
     this.validate();
   } else {
     this.http
@@ -102,16 +102,23 @@ export class SignupComponent implements OnInit {
     });
   }
   }
-  
-  checkUserExists(e) {
+
+  checkUserExists = (e) => {
     const field = e.target.id;
     const val = e.target.value;
+    const self = this;
 
-    this.http
-    .post('api/user/check-user-exists', { field, val })
-    .subscribe(data => {
-      debugger
-    });
+    if (val) {
+      this.http
+      .post('api/user/check-user-exists', { field, val })
+      .subscribe(data => {
+        self.errorList[field] = '';
+      },
+      (error) => {
+        self.errorList[field] = error.error[field];
+      }
+    );
+    }
   }
 
   private checkIfMatchingPasswords(passwordKey: string, passwordConfirmationKey: string) {

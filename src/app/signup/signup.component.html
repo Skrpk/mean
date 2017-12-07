@@ -9,7 +9,7 @@
           <label for="login">Login</label>
           <input  class="form-control" type="text" formControlName="login" id="login" (blur)="checkUserExists($event)">
           <app-error-message
-            [messages]="errorList.login"
+            [message]="errorList.login"
             [closeHandler]="clearErrorMessagesList"
             [name]="'login'"
           ></app-error-message>
@@ -17,7 +17,7 @@
           <label for="email">Email</label>
           <input  class="form-control" type="text" formControlName="email" id="email" (blur)="checkUserExists($event)">
           <app-error-message
-            [messages]="errorList.email"
+            [message]="errorList.email"
             [closeHandler]="clearErrorMessagesList"
             [name]="'email'"
           ></app-error-message>
@@ -25,7 +25,7 @@
           <label for="password">Password</label>
           <input  class="form-control" type="password" formControlName="password" id="password">
           <app-error-message
-            [messages]="errorList.password"
+            [message]="errorList.password"
             [closeHandler]="clearErrorMessagesList"
             [name]="'password'"
           ></app-error-message>
@@ -33,7 +33,7 @@
           <label for="password-confirmation">Password</label>
           <input  class="form-control" type="password" formControlName="passwordConfirmation" id="password-confirmation">
           <app-error-message
-            [messages]="errorList.passwordConfirmation"
+            [message]="errorList.passwordConfirmation"
             [closeHandler]="clearErrorMessagesList"
             [name]="'passwordConfirmation'"
           ></app-error-message>

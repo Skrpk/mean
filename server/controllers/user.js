@@ -1,8 +1,7 @@
 import User from '../models/user';
 
-async function checkUserExists(req, res, next) {
-  console.log('!!!!!!!!!!!!!!!!!!!!');
-  
+const checkUserExists = async (req, res, next) => {
+  console.log('!!!!!!!!!!!!@@@@@@');
   User.find({
     [req.body.field]: req.body.val,
   })

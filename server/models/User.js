@@ -12,4 +12,10 @@ UserSchema.methods.comparePasswords = function comparePasswords(password) {
   return bcrypt.compare(password, this.password);
 };
 
-export default mongoose.model('User', UserSchema);
+console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!');
+
+export default mongoose.models.User || mongoose.model('User', UserSchema);

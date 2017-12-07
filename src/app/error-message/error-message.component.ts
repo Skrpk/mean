@@ -6,7 +6,7 @@ import { Component, OnInit, Input, Output } from '@angular/core';
   styleUrls: ['./error-message.component.css']
 })
 export class ErrorMessageComponent implements OnInit {
-  @Input() messages: string[];
+  @Input() message: string;
   @Input() name: string;
   @Input() closeHandler: (name: string) => {};
 
